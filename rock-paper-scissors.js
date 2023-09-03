@@ -1,5 +1,7 @@
-// function to get computer choice
+let playerScore = 0;
+let computerScore = 0;
 
+// function to get computer choice
 function getComputerChoice() {
     //get random integer between 0 and 2
     let randomInteger = Math.floor(Math.random() * 3);
@@ -13,9 +15,6 @@ function getComputerChoice() {
     }
 }
 
-let playerChoice = 'rock';
-let computerSelection = getComputerChoice();
-
 function playRound(playerChoice, computerSelection) {
     console.log(`You chose ${playerChoice}`);
     console.log(`Computer chooses ${computerSelection}`);
@@ -26,23 +25,26 @@ function playRound(playerChoice, computerSelection) {
             break;
             case 'paper' : 
             console.log('You lose!');
+            computerScore++
             break;
             case 'scissors' : 
             console.log('You win!!!');
+            playerScore++
             break;
-            
         }
     } else if (playerChoice === 'paper') {
         if (playerChoice  === "rock") {
             switch(computerSelection){
                 case 'rock' : 
                 console.log('You win!!');
+                playerScore++;
                 break;
                 case 'paper' : 
                 console.log('It\'s a draw, play again');
                 break;
                 case 'scissors' : 
                 console.log('You lose');
+                computerScore++;
                 break;
                 
             }
@@ -51,15 +53,31 @@ function playRound(playerChoice, computerSelection) {
         switch(computerSelection){
             case 'rock' : 
             console.log('You win!!');
+            playerScore++;
             break;
             case 'paper' : 
             console.log('It\'s a draw, play again');
             break;
             case 'scissors' : 
             console.log('You lose');
+            computerScore++;
             break;
         }
     }
+    console.log(`PLAYER SCORE: ${playerScore}`);
+    console.log(`COMPUTER SCORE: ${computerScore}`);
 }
 
-playRound(playerChoice,computerSelection);
+/* TODO 
+Write a NEW function called game(). Use the previous function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
+*/
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        console.log(`ROUND ${i}:`)
+        let playerChoice = 'rock';
+let computerSelection = getComputerChoice();
+        playRound(playerChoice,computerSelection);
+    }
+}
+game();
