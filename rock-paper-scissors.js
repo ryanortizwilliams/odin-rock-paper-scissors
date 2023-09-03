@@ -68,14 +68,10 @@ function playRound(playerChoice, computerSelection) {
     console.log(`COMPUTER SCORE: ${computerScore}`);
 }
 
-/* TODO 
-Write a NEW function called game(). Use the previous function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
-*/
-
 function game() {
     for (let i = 0; i < 5; i++) {
         console.log(`ROUND ${i}:`)
-        let playerChoice = 'rock';
+        let playerChoice = prompt('Choose rock, paper or scissors!');
 let computerSelection = getComputerChoice();
         playRound(playerChoice,computerSelection);
     }
