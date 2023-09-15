@@ -76,4 +76,17 @@ let computerSelection = getComputerChoice();
         playRound(playerChoice,computerSelection);
     }
 }
-game();
+//game();
+
+// DOM manipulation 
+//TODO for buttons: add on click for each button
+
+const rock = document.getElementById('rock');
+rock.addEventListener('click', () => alert('Test'));
+
+const paper = document.getElementById('paper');
+paper.addEventListener('click', () => alert('Test'));
+
+const scissors = document.getElementById('scissors');
+scissors.addEventListener('click', () => alert('Test'));
+
