@@ -1,6 +1,32 @@
 let playerScore = 0;
 let computerScore = 0;
 
+//DOM ELEMENTS
+//Play area
+const player = document.getElementById('player');
+let playerIcon = player.querySelector(".choice-icon")
+
+const computer = document.getElementById('computer');
+let computerIcon = computer.querySelector(".choice-icon")
+
+//Buttons
+const rock = document.getElementById('rock');
+rock.addEventListener('click', playRound.bind(null,'rock'));
+
+const paper = document.getElementById('paper');
+paper.addEventListener('click', playRound.bind(null,'paper'));
+
+const scissors = document.getElementById('scissors');
+scissors.addEventListener('click', playRound.bind(null,'scissors'));
+
+
+//functions for DOM manipulation
+// TODO: create a function for removing an icon of player and replacing it with player choice
+
+function replaceIcon(player, playerChoice) {
+    
+}
+
 // function to get computer choice
 function getComputerChoice() {
     //get random integer between 0 and 2
@@ -83,15 +109,3 @@ function game() {
 
 // DOM manipulation 
 
-//buttons
-const rock = document.getElementById('rock');
-rock.addEventListener('click', playRound.bind(null,'rock'));
-
-const paper = document.getElementById('paper');
-paper.addEventListener('click', playRound.bind(null,'paper'));
-
-const scissors = document.getElementById('scissors');
-scissors.addEventListener('click', playRound.bind(null,'scissors'));
-
-
-//TODO Add functions for Each button 
