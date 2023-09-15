@@ -20,16 +20,21 @@ const scissors = document.getElementById('scissors');
 scissors.addEventListener('click', playRound.bind(null,'scissors'));
 
 
-//functions for DOM manipulation
-// TODO: create a function for removing an icon of player and replacing it with player choice
 
-function replaceIcon(player, playerChoice) {
-    
+function replaceIcon(playerID, choice) {
+    //replaces the icon of the player or computer
+    let id = document.getElementById(playerID);
+    let selectedIcon = id.querySelector(".choice-icon");
+    //remove current icon
+    id.removeChild(selectedIcon)
+    // create and append new icon
+    let newIcon =document.createElement('div');
+    newIcon.setAttribute('class', 'choice-icon');
+    newIcon.textContent = `${choice}`
+    id.appendChild(newIcon);
 }
 
-// function to get computer choice
 function getComputerChoice() {
-    //get random integer between 0 and 2
     let randomInteger = Math.floor(Math.random() * 3);
     switch (randomInteger){
         case 0 :
@@ -45,8 +50,10 @@ function playRound(playerChoice) {
     let computerSelection = getComputerChoice();
     //TODO: Change delete print, display player choice as choice icon
     console.log(`You chose ${playerChoice}`);
+    replaceIcon('player', playerChoice);
     //TODO: Display computer selection to computer's choice icon
     console.log(`Computer chooses ${computerSelection}`);
+    replaceIcon('computer', computerSelection)
     if (playerChoice  === "rock") {
         switch(computerSelection){
             case 'rock' : 
@@ -82,30 +89,17 @@ function playRound(playerChoice) {
         switch(computerSelection){
             case 'rock' : 
             console.log('You lose!');
-            playerScore++;
+            computerScore++;
             break;
             case 'paper' : 
             console.log('You win!');
+            playerScore++;
             break;
             case 'scissors' : 
             console.log('It\'s a draw, play again');
-            computerScore++;
             break;
         }
     }
     console.log(`PLAYER SCORE: ${playerScore}`);
     console.log(`COMPUTER SCORE: ${computerScore}`);
 }
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-        console.log(`ROUND ${i}:`)
-        let playerChoice = prompt('Choose rock, paper or scissors!');
-
-        playRound(playerChoice,computerSelection);
-    }
-}
-//game();
-
-// DOM manipulation 
-
