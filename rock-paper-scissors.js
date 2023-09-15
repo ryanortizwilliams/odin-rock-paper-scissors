@@ -15,8 +15,11 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerChoice, computerSelection) {
+function playRound(playerChoice) {
+    let computerSelection = getComputerChoice();
+    //TODO: Change delete print, display player choice as choice icon
     console.log(`You chose ${playerChoice}`);
+    //TODO: Display computer selection to computer's choice icon
     console.log(`Computer chooses ${computerSelection}`);
     if (playerChoice  === "rock") {
         switch(computerSelection){
@@ -52,14 +55,14 @@ function playRound(playerChoice, computerSelection) {
     } else if (playerChoice === 'scissors') {
         switch(computerSelection){
             case 'rock' : 
-            console.log('You win!!');
+            console.log('You lose!');
             playerScore++;
             break;
             case 'paper' : 
-            console.log('It\'s a draw, play again');
+            console.log('You win!');
             break;
             case 'scissors' : 
-            console.log('You lose');
+            console.log('It\'s a draw, play again');
             computerScore++;
             break;
         }
@@ -72,21 +75,23 @@ function game() {
     for (let i = 0; i < 5; i++) {
         console.log(`ROUND ${i}:`)
         let playerChoice = prompt('Choose rock, paper or scissors!');
-let computerSelection = getComputerChoice();
+
         playRound(playerChoice,computerSelection);
     }
 }
 //game();
 
 // DOM manipulation 
-//TODO for buttons: add on click for each button
 
+//buttons
 const rock = document.getElementById('rock');
-rock.addEventListener('click', () => alert('Test'));
+rock.addEventListener('click', playRound.bind(null,'rock'));
 
 const paper = document.getElementById('paper');
-paper.addEventListener('click', () => alert('Test'));
+paper.addEventListener('click', playRound.bind(null,'paper'));
 
 const scissors = document.getElementById('scissors');
-scissors.addEventListener('click', () => alert('Test'));
+scissors.addEventListener('click', playRound.bind(null,'scissors'));
 
+
+//TODO Add functions for Each button 
