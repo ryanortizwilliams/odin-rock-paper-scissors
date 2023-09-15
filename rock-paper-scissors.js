@@ -1,14 +1,10 @@
 let playerScore = 0;
 let computerScore = 0;
 
-//DOM ELEMENTS
-//Play area
-const player = document.getElementById('player');
-let playerIcon = player.querySelector(".choice-icon")
+const scoreBoard = document.querySelector(".score-container");
+scoreBoard.addEventListener('click', () => alert('test'));
 
-const computer = document.getElementById('computer');
-let computerIcon = computer.querySelector(".choice-icon")
-
+// DOM ELEMENTS
 //Buttons
 const rock = document.getElementById('rock');
 rock.addEventListener('click', playRound.bind(null,'rock'));
@@ -34,6 +30,21 @@ function replaceIcon(playerID, choice) {
     id.appendChild(newIcon);
 }
 
+
+function updateResult(result) {
+    const scoreBoard = document.querySelector(".score-container");
+    let oldResult = scoreBoard.querySelector(".result");
+    scoreBoard.removeChild(oldResult);
+    let newResult = document.createElement('div');
+    newResult.setAttribute('class', 'result');
+    if (result === 'win' || result === 'lose') {
+        newResult.textContent = `You ${result}`
+    } else {
+        newResult.textContent = `I's a ${result}`
+    }
+    scoreBoard.appendChild(newResult)
+}
+
 function getComputerChoice() {
     let randomInteger = Math.floor(Math.random() * 3);
     switch (randomInteger){
@@ -48,55 +59,60 @@ function getComputerChoice() {
 
 function playRound(playerChoice) {
     let computerSelection = getComputerChoice();
-    //TODO: Change delete print, display player choice as choice icon
     console.log(`You chose ${playerChoice}`);
     replaceIcon('player', playerChoice);
-    //TODO: Display computer selection to computer's choice icon
     console.log(`Computer chooses ${computerSelection}`);
     replaceIcon('computer', computerSelection)
+    //TODO: Update score container 
     if (playerChoice  === "rock") {
         switch(computerSelection){
             case 'rock' : 
             console.log('It\'s a draw, play again');
+            updateResult('draw')
             break;
             case 'paper' : 
             console.log('You lose!');
+            updateResult('lose')
             computerScore++
             break;
             case 'scissors' : 
             console.log('You win!!!');
+            updateResult('win')
             playerScore++
             break;
         }
     } else if (playerChoice === 'paper') {
-        if (playerChoice  === "rock") {
             switch(computerSelection){
                 case 'rock' : 
                 console.log('You win!!');
+                updateResult('win')
                 playerScore++;
                 break;
                 case 'paper' : 
                 console.log('It\'s a draw, play again');
+                updateResult('draw')
                 break;
                 case 'scissors' : 
                 console.log('You lose');
                 computerScore++;
+                updateResult('lose')
                 break;
-                
-            }
-        }
+                }
     } else if (playerChoice === 'scissors') {
         switch(computerSelection){
             case 'rock' : 
             console.log('You lose!');
+            updateResult('lose')
             computerScore++;
             break;
             case 'paper' : 
             console.log('You win!');
+            updateResult('win')
             playerScore++;
             break;
             case 'scissors' : 
             console.log('It\'s a draw, play again');
+            updateResult('draw')
             break;
         }
     }
