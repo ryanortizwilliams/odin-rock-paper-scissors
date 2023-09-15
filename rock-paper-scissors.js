@@ -1,5 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
+let roundNumber = 1;
 
 const scoreBoard = document.querySelector(".score-container");
 scoreBoard.addEventListener('click', () => alert('test'));
@@ -30,6 +31,15 @@ function replaceIcon(playerID, choice) {
     id.appendChild(newIcon);
 }
 
+// user chiild.replaceWith(newElement) to update rounds 
+
+function updateRound() {
+    let round = document.querySelector('.round');
+    let newRound = document.createElement('div');
+    newRound.setAttribute('class', 'round');
+    newRound.textContent = `Round ${roundNumber}`;
+    round.replaceWith(newRound);
+}
 
 function updateResult(result) {
     const scoreBoard = document.querySelector(".score-container");
@@ -59,6 +69,7 @@ function getComputerChoice() {
 
 function playRound(playerChoice) {
     let computerSelection = getComputerChoice();
+    updateRound();
     console.log(`You chose ${playerChoice}`);
     replaceIcon('player', playerChoice);
     console.log(`Computer chooses ${computerSelection}`);
@@ -74,11 +85,13 @@ function playRound(playerChoice) {
             console.log('You lose!');
             updateResult('lose')
             computerScore++
+            roundNumber++
             break;
             case 'scissors' : 
             console.log('You win!!!');
             updateResult('win')
             playerScore++
+            roundNumber++
             break;
         }
     } else if (playerChoice === 'paper') {
@@ -87,6 +100,7 @@ function playRound(playerChoice) {
                 console.log('You win!!');
                 updateResult('win')
                 playerScore++;
+                roundNumber++
                 break;
                 case 'paper' : 
                 console.log('It\'s a draw, play again');
@@ -95,6 +109,7 @@ function playRound(playerChoice) {
                 case 'scissors' : 
                 console.log('You lose');
                 computerScore++;
+                roundNumber++;
                 updateResult('lose')
                 break;
                 }
@@ -104,11 +119,13 @@ function playRound(playerChoice) {
             console.log('You lose!');
             updateResult('lose')
             computerScore++;
+            roundNumber++;
             break;
             case 'paper' : 
             console.log('You win!');
             updateResult('win')
             playerScore++;
+            roundNumber++;
             break;
             case 'scissors' : 
             console.log('It\'s a draw, play again');
